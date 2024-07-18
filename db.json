@@ -1,40 +1,12 @@
 {
   "users": [
     {
-      "id": "13",
-      "firstName": "Jamshid",
-      "lastName": "Ahmedov",
-      "phone": "+998931234569",
-      "gender": "male",
-      "group": "5"
-    },
-    {
       "id": "15",
       "firstName": "Sardor",
       "lastName": "G'ofurov",
       "phone": "+998937654323",
       "gender": "male",
       "group": "4"
-    },
-    {
-      "id": "17",
-      "firstName": "Ibrohim",
-      "lastName": "Mirzayev",
-      "phone": "+998931234560",
-      "gender": "male",
-      "group": "3"
-    },
-    {
-      "id": "1",
-      "firstName": "Diyorbek",
-      "lastName": "Bekmurodov",
-      "group": "2"
-    },
-    {
-      "id": "1231",
-      "firstName": "Diyorbek",
-      "lastName": "Bekmurodov",
-      "group": "58"
     },
     {
       "id": "123",
@@ -44,18 +16,6 @@
     },
     {
       "id": "124",
-      "firstName": "Diyorbek",
-      "lastName": "Bekmurodov",
-      "group": "2"
-    },
-    {
-      "id": "2",
-      "firstName": "Diyorbek",
-      "lastName": "jhb,nbk.m, ",
-      "group": "2"
-    },
-    {
-      "id": "zvcvzc",
       "firstName": "Diyorbek",
       "lastName": "Bekmurodov",
       "group": "2"
@@ -95,6 +55,24 @@
       "firstName": "33",
       "lastName": "3123",
       "group": "efewfrws"
+    },
+    {
+      "id": "23",
+      "firstName": "ew",
+      "lastName": "14324",
+      "group": "fdfsf"
+    },
+    {
+      "id": "2",
+      "firstName": "13e",
+      "lastName": "dfdffs",
+      "group": "asasf"
+    },
+    {
+      "id": "asfdw",
+      "firstName": "sadfdsf",
+      "lastName": "dsdfkjl",
+      "group": "dmfbdk"
     }
   ]
 }

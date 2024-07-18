@@ -1,4 +1,6 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect} from "react";
+import { useState } from 'react';
+
 import {
   FETCH_POSTS_ERROR,
   FETCH_POSTS_REQUEST,
@@ -152,7 +154,7 @@ const Posts = () => {
                 <td>{post.group}</td>
                 <td>
                   <button
-                    className="Delete"
+                    
                     onClick={() => handleDelete(post.id)}
                   >
                     Delete
@@ -163,6 +165,9 @@ const Posts = () => {
             ))}
           </tbody>
         </table>
+
+
+
         <form onSubmit={handleAdd}>
           <input
             className="input1"
@@ -198,6 +203,11 @@ const Posts = () => {
           />
           <button type="submit" className="A">ADD</button>
         </form>
+
+
+
+
+        
       </>
     </div>
   );
