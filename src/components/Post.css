@@ -1,0 +1,211 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+
+
+*{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/* posts.css */
+
+table {
+    width: 60%;
+    border-collapse: collapse;
+    margin-top: 200px;
+    margin-left: 300px;
+  }
+  
+  table th, table td {
+    font-family: Inter    ;
+    border: 1px solid #dddddd;
+    padding: 8px;
+    font-size: 20px;
+    text-align: left;
+  }
+  
+  table th {
+    background-color: #f2f2f2;
+  }
+  
+  table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+ /* this button is inspired from this -- s://www.newline.co/pricing */
+button {
+    margin-left: 10px;
+    --width: 100px;
+    --timing: 2s;
+    border: 0;
+    width: var(--width);
+    padding-block: 10px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1em;
+    background: rgb(203, 87, 87);
+    transition: all 0.2s;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    z-index: 01;
+    background-image: linear-gradient(
+      to right,
+      rgb(250, 82, 82),
+      rgb(250, 82, 82) 16.65%,
+      rgb(190, 75, 219) 16.65%,
+      rgb(190, 75, 219) 33.3%,
+      rgb(76, 110, 245) 33.3%,
+      rgb(76, 110, 245) 49.95%,
+      rgb(64, 192, 87) 49.95%,
+      rgb(64, 192, 87) 66.6%,
+      rgb(250, 176, 5) 66.6%,
+      rgb(250, 176, 5) 83.25%,
+      rgb(253, 126, 20) 83.25%,
+      rgb(253, 126, 20) 100%,
+      rgb(250, 82, 82) 100%
+    );
+    animation: var(--timing) linear dance6123 infinite;
+    transform: scale(1.1) translateY(-1px);
+  }
+  
+  @keyframes dance6123 {
+    to {
+      background-position: var(--width);
+    }
+  }
+  
+
+
+  .Update {
+    margin-left: 10px;
+    --width: 100px;
+    --timing: 2s;
+    border: 0;
+    width: var(--width);
+    padding-block: 10px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1em;
+    background: rgb(64, 192, 87);
+    transition: all 0.2s;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+  .Update:hover {
+    background-image: linear-gradient(
+      to right,
+      rgb(250, 82, 82),
+      rgb(250, 82, 82) 16.65%,
+      rgb(190, 75, 219) 16.65%,
+      rgb(190, 75, 219) 33.3%,
+      rgb(76, 110, 245) 33.3%,
+      rgb(76, 110, 245) 49.95%,
+      rgb(64, 192, 87) 49.95%,
+      rgb(64, 192, 87) 66.6%,
+      rgb(250, 176, 5) 66.6%,
+      rgb(250, 176, 5) 83.25%,
+      rgb(253, 126, 20) 83.25%,
+      rgb(253, 126, 20) 100%,
+      rgb(250, 82, 82) 100%
+    );
+    animation: var(--timing) linear dance6123 infinite;
+    transform: scale(1.1) translateY(-1px);
+  }
+  
+  @keyframes dance6123 {
+    to {
+      background-position: var(--width);
+    }
+  }
+  
+  .student{
+   font-family: Inter;
+    font-size: 60px;
+    background-color:#fff;
+    margin: 0 auto;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+
+
+  .Add{
+    /* position: fixed !important; */
+    /* margin-left:1410px !important; */
+    position: absolute;
+    color: black;
+    margin-left: 300px;
+    margin-top: -760px;
+    background-color: blue;
+  }
+  form{
+    position: fixed !important;
+    margin-top: -790px;
+    padding: 30px !important;
+    padding: 0 60px !important;
+    margin-left: 1215px;
+    border-radius: 10px;
+    background-color: #f2f2f2;
+    gap: 5px;
+    position: absolute;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px !important;
+    padding-bottom: 30px !important;
+  }
+  form.input{
+    padding: 10px;
+  }
+  .input1{
+    margin-top: 30px;
+    padding: 10px;
+    outline: none;
+    background-color: #dddddd;
+    border-radius: 4px;
+    border: none;
+  }
+  .input2{
+    padding: 10px;
+    outline: none;
+    background-color: #dddddd;
+    border-radius: 4px;
+    border: none;
+  }
+  .input3{
+    padding: 10px;
+    outline: none;
+    background-color: #dddddd;
+    border-radius: 4px;
+    border: none;
+  }
+  .input4{
+    padding: 10px;
+    outline: none;
+    background-color: #dddddd;
+    border-radius: 4px;
+    border: none;
+  }
+  .search{
+    position: fixed !important;
+    width: 60%;
+    margin-top: -130px;
+    margin-left: 300px;
+    position: absolute;
+    padding: 20px;  
+    outline: none;
+    background-color: #dddddd;
+    border-radius: 4px;
+    border: none;
+
+  }
+  .search_input{
+    background-color: #fff !important;
+  }
