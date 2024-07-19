@@ -1,5 +1,5 @@
-import React, { useContext, useEffect} from "react";
-import { useState } from 'react';
+import React, { useContext, useEffect } from "react";
+import { useState } from "react";
 
 import {
   FETCH_POSTS_ERROR,
@@ -11,6 +11,9 @@ import {
   ADD_POST_REQUEST,
   ADD_POST_SUCCESS,
   ADD_POST_ERROR,
+  EDIT_POST_REQUEST,
+  EDIT_POST_SUCCESS,
+  EDIT_POST_ERROR,
   PostContext,
 } from "../context/postContext";
 
@@ -30,6 +33,7 @@ const Posts = () => {
   const [formError, setFormError] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredPosts, setFilteredPosts] = useState([]);
+  const [isEditing, setIsEditing] = useState(false);
 
   const fetchPosts = async () => {
     dispatch({ type: FETCH_POSTS_REQUEST });
@@ -56,7 +60,7 @@ const Posts = () => {
         throw new Error("Network response was not ok");
       }
       dispatch({ type: DELETE_POST_SUCCESS, payload: id });
-      setFilteredPosts(filteredPosts.filter(post => post.id !== id)); // Update filtered posts
+      setFilteredPosts(filteredPosts.filter((post) => post.id !== id)); // Update filtered posts
     } catch (err) {
       dispatch({ type: DELETE_POST_ERROR, payload: err.message });
       console.error("Error occurred:", err);
@@ -69,10 +73,48 @@ const Posts = () => {
       setFormError("All fields are required.");
       return;
     }
-    dispatch({ type: ADD_POST_REQUEST });
+    if (isEditing) {
+      handleEditSubmit();
+    } else {
+      dispatch({ type: ADD_POST_REQUEST });
+      try {
+        const res = await fetch("http://localhost:3000/users", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        });
+        if (!res.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const newPost = await res.json();
+        dispatch({ type: ADD_POST_SUCCESS, payload: newPost });
+        setFormData({
+          id: "",
+          firstName: "",
+          lastName: "",
+          group: "",
+        });
+        setFormError("");
+        setFilteredPosts([...filteredPosts, newPost]); // Update filtered posts
+      } catch (err) {
+        dispatch({ type: ADD_POST_ERROR, payload: err.message });
+        console.error("Error occurred:", err);
+      }
+    }
+  };
+
+  const handleEdit = (post) => {
+    setFormData(post);
+    setIsEditing(true);
+  };
+
+  const handleEditSubmit = async () => {
+    dispatch({ type: EDIT_POST_REQUEST });
     try {
-      const res = await fetch("http://localhost:3000/users", {
-        method: "POST",
+      const res = await fetch(`http://localhost:3000/users/${formData.id}`, {
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
@@ -81,8 +123,8 @@ const Posts = () => {
       if (!res.ok) {
         throw new Error("Network response was not ok");
       }
-      const newPost = await res.json();
-      dispatch({ type: ADD_POST_SUCCESS, payload: newPost });
+      const updatedPost = await res.json();
+      dispatch({ type: EDIT_POST_SUCCESS, payload: updatedPost });
       setFormData({
         id: "",
         firstName: "",
@@ -90,9 +132,12 @@ const Posts = () => {
         group: "",
       });
       setFormError("");
-      setFilteredPosts([...filteredPosts, newPost]); // Update filtered posts
+      setFilteredPosts(
+        filteredPosts.map((post) => (post.id === updatedPost.id ? updatedPost : post))
+      ); 
+      setIsEditing(false);
     } catch (err) {
-      dispatch({ type: ADD_POST_ERROR, payload: err.message });
+      dispatch({ type: EDIT_POST_ERROR, payload: err.message });
       console.error("Error occurred:", err);
     }
   };
@@ -100,11 +145,14 @@ const Posts = () => {
   const handleSearch = (e) => {
     const value = e.target.value;
     setSearchTerm(value);
-    setFilteredPosts(posts.filter(post =>
-      post.firstName.toLowerCase().includes(value.toLowerCase()) ||
-      post.lastName.toLowerCase().includes(value.toLowerCase()) ||
-      post.group.toLowerCase().includes(value.toLowerCase())
-    ));
+    setFilteredPosts(
+      posts.filter(
+        (post) =>
+          post.firstName.toLowerCase().includes(value.toLowerCase()) ||
+          post.lastName.toLowerCase().includes(value.toLowerCase()) ||
+          post.group.toLowerCase().includes(value.toLowerCase())
+      )
+    );
   };
 
   useEffect(() => {
@@ -126,15 +174,15 @@ const Posts = () => {
       {formError && <h2 style={{ color: "red" }}>{formError}</h2>}
       <>
         <h1 className="student">Students app</h1>
-       <div className="search_input">
-       <input
-          className="search"
-          type="text"
-          placeholder="Search"
-          value={searchTerm}
-          onChange={handleSearch}
-        />
-       </div>
+        <div className="search_input">
+          <input
+            className="search"
+            type="text"
+            placeholder="Search"
+            value={searchTerm}
+            onChange={handleSearch}
+          />
+        </div>
         <table>
           <thead>
             <tr>
@@ -153,20 +201,15 @@ const Posts = () => {
                 <td>{post.lastName}</td>
                 <td>{post.group}</td>
                 <td>
-                  <button
-                    
-                    onClick={() => handleDelete(post.id)}
-                  >
-                    Delete
+                  <button onClick={() => handleDelete(post.id)}>Delete</button>
+                  <button className="Update" onClick={() => handleEdit(post)}>
+                    Edit
                   </button>
-                  <button className="Update">Edit</button>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
-
-
 
         <form onSubmit={handleAdd}>
           <input
@@ -201,13 +244,10 @@ const Posts = () => {
             value={formData.group}
             onChange={handleChange}
           />
-          <button type="submit" className="A">ADD</button>
+          <button type="submit" className="A">
+            {isEditing ? "Update" : "ADD"}
+          </button>
         </form>
-
-
-
-
-        
       </>
     </div>
   );
